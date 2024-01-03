@@ -1,11 +1,15 @@
 // Read bytes in a file
+const fs = require('fs');
+
 module.exports.bytes = (filename) => {
   const { size } = fs.statSync(filename);
   console.log(size);
 }
 
+// bytes('./Documents/codingChallenges/CC1/test.txt');
+
 // Read lines in a file
-module.exports.lines = (filename) => {
+const lines = (filename) => {
   let count = 0;
   fs.createReadStream(filename, process.argv[2])
     .on('data', (chunk) => {
@@ -20,6 +24,8 @@ module.exports.lines = (filename) => {
     });
 }
 
+// lines('./Documents/codingChallenges/CC1/test.txt');
+
 // Read words in a file
 // const wordCount = (string) => string.split(" ").length
 // will overcount the number of words if the input text happens to have multiple spaces in a row.
@@ -27,7 +33,7 @@ module.exports.lines = (filename) => {
   foo        bar baz
   `));
 */
-module.exports.words = (filename) => {
+const words = (filename) => {
   fs.readFile(filename, 'utf8', (err, data) => {
     if (err) {
       throw err;
@@ -38,8 +44,10 @@ module.exports.words = (filename) => {
   });
 }
 
+// words('./Documents/codingChallenges/CC1/test.txt');
+
 // Read characters in a file
-module.exports.chars = (filename) => {
+const chars = (filename) => {
   let chars = 0;
   fs.readFile(filename, 'utf8', (err, data) => {
     if (err) throw err;
@@ -50,4 +58,10 @@ module.exports.chars = (filename) => {
     console.log(chars);
   });
 }
+
+
+bytes('./Documents/codingChallenges/CC1/test.txt');
+lines('./Documents/codingChallenges/CC1/test.txt');
+words('./Documents/codingChallenges/CC1/test.txt');
+chars('./Documents/codingChallenges/CC1/test.txt');
 // Show stats in line words bytes output
